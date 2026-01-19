@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Thinking - วิชาออกแบบการคิด</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        header {
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+        
+        .stages {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .stage-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .stage-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stage-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stage-card p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .principles {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        
+        .principles li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+        
+        .principles li:before {
+            content: "✓";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .principles li:last-child {
+            border-bottom: none;
+        }
+        
+        .back-link {
+            text-align: center;
+            margin-top: 3rem;
+        }
+        
+        .back-link a {
+            color: white;
+            text-decoration: none;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+            display: inline-block;
+        }
+        
+        .back-link a:hover {
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: white;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🎯 Design Thinking</h1>
+        <p>วิชาออกแบบการคิด - ปี 2568 เทอม 2</p>
+    </header>
+    
+    <div class="container">
+        <!-- About Section -->
+        <section class="section">
+            <h2>ว่าด้วย Design Thinking</h2>
+            <p>Design Thinking เป็นวิธีการแก้ปัญหาและสร้างสรรค์นวัตกรรมที่เน้นการทำความเข้าใจความต้องการของผู้ใช้งาน โดยผ่านการทดลอง คิดสร้างสรรค์ และความร่วมมือ เพื่อให้ได้วิธีแก้ปัญหาที่เป็นประโยชน์และตอบสนองต่อความต้องการจริง</p>
+        </section>
+        
+        <!-- Stages Section -->
+        <section class="section">
+            <h2>ขั้นตอนหลัก 5 ขั้น</h2>
+            <div class="stages"></div>
+                <div class="stage-card">
+                    <h3>1. Empathize</h3>
+                    <p>เข้าใจความรู้สึกและความต้องการของผู้ใช้</p>
+                </div>
+                <div class="stage-card">
+                    <h3>2. Define</h3>
+                    <p>นิยามปัญหาหลักที่ต้องแก้ไข</p>
+                </div>
+                <div class="stage-card">
+                    <h3>3. Ideate</h3>
+                    <p>สร้างสรรค์ความคิดแบบอิสระและหลากหลาย</p>
+                </div>
+                <div class="stage-card">
+                    <h3>4. Prototype</h3>
+                    <p>สร้างต้นแบบของวิธีแก้ปัญหา</p>
+                </div>
+                <div class="stage-card">
+                    <h3>5. Test</h3>
+                    <p>ทดสอบและรับฟังข้อเสนอแนะจากผู้ใช้</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Principles Section -->
+        <section class="section">
+            <h2>หลักการสำคัญ</h2>
+            <ul class="principles">
+                <li>มุ่งเน้นไปที่ผู้ใช้งานและความต้องการของพวกเขา</li>
+                <li>ส่งเสริมการคิดตามฟิชาร์ชั่นแบบกลุ่ม</li>
+                <li>ไม่กลัวที่จะทดลองและยอมรับความล้มเหลว</li>
+                <li>คิดขนาดเล็ก ทำให้เร็ว แล้วปรับปรุง</li>
+                <li>สร้างสมดุลระหว่างความสร้างสรรค์และความเป็นจริง</li>
+            </ul>
+        </section>
+        
+        <!-- Back Link -->
+        <div class="back-link">
+            <a href="index.html">← กลับไปที่หน้าแรก</a>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2568 Design Thinking Course | Chiraphinya Chaichomphu</p>
+    </footer>
+</body>
+</html>
