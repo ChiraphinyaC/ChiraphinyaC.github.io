@@ -1,1 +1,140 @@
 <h1>แบบร่าง</h1>
+<!doctype html>
+<html lang="th">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>เมนูอาหาร</title>
+	<style>
+		:root{--accent:#e76f51;--bg:#fff;--muted:#666}
+		body{font-family:system-ui,-apple-system,Segoe UI,Roboto,'Noto Sans Thai',sans-serif;margin:0;background:var(--bg);color:#111}
+		header{background:linear-gradient(90deg,#ffedd5,#fff5f0);padding:28px 16px;text-align:center;border-bottom:1px solid #eee}
+		header h1{margin:0;font-size:clamp(1.5rem,3vw,2.4rem);color:var(--accent)}
+		main{max-width:1100px;margin:28px auto;padding:0 16px}
+		.menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+		.dish{background:#fff;border:1px solid #f0f0f0;border-radius:10px;overflow:hidden;box-shadow:0 6px 18px rgba(15,15,15,0.03);display:flex;flex-direction:column}
+		.dish img{width:100%;height:160px;object-fit:cover;display:block}
+		.dish .info{padding:12px 14px;flex:1;display:flex;flex-direction:column}
+		.dish h2{margin:0 0 8px 0;font-size:1.05rem}
+		.dish p{margin:0 0 12px 0;color:var(--muted);font-size:0.95rem;flex:1}
+		.dish .meta{display:flex;justify-content:space-between;align-items:center}
+		.price{font-weight:700;color:var(--accent)}
+		footer{max-width:1100px;margin:28px auto;padding:16px;text-align:center;color:var(--muted);font-size:0.95rem}
+		@media (prefers-color-scheme:dark){:root{--bg:#0b0b0b}body{color:#eee}header{background:linear-gradient(90deg,#1a1a1a,#0f1724)}.dish{background:#0b0b0b;border-color:#111}footer{color:#999}}
+	</style>
+</head>
+<body>
+	<header>
+		<h1>เมนูอาหาร</h1>
+	</header>
+	<main>
+		<section style="max-width:1100px;margin:16px auto 8px;padding:0 16px;" aria-label="ค้นหาวัตถุดิบ">
+			<label for="ingredientsInput" style="display:block;margin-bottom:8px;font-weight:600;color:#333">ใส่วัตถุดิบที่มี (คั่นด้วย , หรือ เว้นวรรค)</label>
+			<div style="display:flex;gap:8px;align-items:center">
+				<input id="ingredientsInput" type="text" placeholder="เช่น กุ้ง, ไก่, มะนาว" style="flex:1;padding:10px 12px;border-radius:8px;border:1px solid #ddd;font-size:1rem">
+				<button id="searchBtn" style="background:var(--accent);color:#fff;border:none;padding:10px 14px;border-radius:8px;cursor:pointer">ค้นหา</button>
+				<button id="resetBtn" style="background:#f3f3f3;color:#333;border:1px solid #e6e6e6;padding:10px 12px;border-radius:8px;cursor:pointer">รีเซ็ต</button>
+			</div>
+		</section>
+
+		<section class="menu-grid" aria-label="รายการเมนูอาหาร">
+			<article class="dish">
+				<img src="https://via.placeholder.com/600x400?text=%E0%B8%9C%E0%B8%B1%E0%B8%94%E0%B9%84%E0%B8%97%E0%B8%A2" alt="ผัดไทย">
+				<div class="info">
+					<h2>ผัดไทยกุ้งสด</h2>
+					<p>เส้นจันท์ผัดกับกุ้งสด ใส่ถั่วลิสงและซอสสูตรเด็ด เสิร์ฟพร้อมมะนาวสด</p>
+					</div>
+				</article>
+			</section>
+
+		<!-- รายการเมนูหลัก (มีข้อมูลวัตถุดิบใน data-ingredients เพื่อใช้กรอง) -->
+		<section class="menu-grid" aria-label="รายการเมนูอาหาร">
+			<article class="dish" data-ingredients="กุ้ง,เส้น,ถั่วลิสง,มะนาว,ไข่,เต้าหู้">
+				<img src="https://via.placeholder.com/600x400?text=%E0%B8%9C%E0%B8%B1%E0%B8%94%E0%B9%84%E0%B8%97%E0%B8%A2" alt="ผัดไทย">
+				<div class="info">
+					<h2>ผัดไทยกุ้งสด</h2>
+					<p>เส้นจันท์ผัดกับกุ้งสด ใส่ถั่วลิสงและซอสสูตรเด็ด เสิร์ฟพร้อมมะนาวสด</p>
+					<div class="meta"><span class="price">฿80</span></div>
+				</div>
+			</article>
+					<div class="meta"><span class="price">฿80</span></div>
+				</div>
+			</article>
+
+			<article class="dish" data-ingredients="มะละกอ,ถั่วฝักยาว,กุ้งแห้ง,มะนาว,พริก,ถั่วลิสง">
+				<img src="https://via.placeholder.com/600x400?text=%E0%B8%AA%E0%B8%B5%E0%B9%8A%E0%B8%A7%E0%B8%B0%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81" alt="ส้มตำ">
+				<div class="info">
+					<h2>ส้มตำไทย</h2>
+					<p>ตำสดๆ รสชาติจัดจ้าน ใส่ถั่วฝักยาว มะละกอสุกและกุ้งแห้ง</p>
+					<div class="meta"><span class="price">฿60</span></div>
+				</div>
+			</article>
+
+			<article class="dish" data-ingredients="ไก่,ข้าว,น้ำมัน,ซอส,น้ำจิ้ม">
+				<img src="https://via.placeholder.com/600x400?text=%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%87%E0%B8%AB%E0%B8%B1%E0%B8%9A%E0%B9%80%E0%B8%AB%E0%B8%B2" alt="ข้าวหน้าเป็ด">
+				<div class="info">
+					<h2>ข้าวมันไก่กรอบ</h2>
+					<p>อกไก่หมักทอดกรอบ เสิร์ฟกับข้าวหอมมันซอสพิเศษและน้ำจิ้มสูตรบ้าน</p>
+					<div class="meta"><span class="price">฿95</span></div>
+				</div>
+			</article>
+
+			<article class="dish" data-ingredients="กุ้ง,เห็ด,ตะไคร้,ข่า,มะนาว,ใบมะกรูด">
+				<img src="https://via.placeholder.com/600x400?text=%E0%B8%AA%E0%B8%9A%E0%B8%A3%E0%B8%9A%E0%B8%A5%E0%B8%B2%E0%B8%AA%E0%B9%8C" alt="ต้มยำ">
+				<div class="info">
+					<h2>ต้มยำกุ้งน้ำข้น</h2>
+					<p>ซุปเข้มข้น ใส่เห็ดสดและสมุนไพรไทย ให้รสเปรี้ยวเผ็ดกลมกล่อม</p>
+					<div class="meta"><span class="price">฿120</span></div>
+				</div>
+			</article>
+
+			<article class="dish" data-ingredients="เนื้อ,กะเพรา,ข้าว,ไข่,พริก,กระเทียม">
+				<img src="https://via.placeholder.com/600x400?text=%E0%B8%9A%E0%B8%B2%E0%B8%9A%E0%B8%B4%E0%B8%95%E0%B8%B1%E0%B8%A7" alt="ข้าวผัด">
+				<div class="info">
+					<h2>ข้าวผัดกะเพราเนื้อ</h2>
+					<p>เนื้อสับผัดกะเพรารสจัด เสิร์ฟพร้อมไข่ดาวและเครื่องเคียง</p>
+					<div class="meta"><span class="price">฿110</span></div>
+				</div>
+			</article>
+
+			<article class="dish" data-ingredients="ผลไม้,น้ำตาล,น้ำแข็ง,ครีม">
+				<img src="https://via.placeholder.com/600x400?text=%E0%B8%A0%E0%B8%B2%E0%B8%A3%E0%B8%B4%E0%B8%A3%E0%B9%8C%E0%B8%95%E0%B8%B1%E0%B8%99" alt="ขนม">
+				<div class="info">
+					<h2>ขนมหวานผลไม้</h2>
+					<p>ผลไม้ตามฤดูกาล เสิร์ฟเป็นของหวานเบาๆ ปิดท้ายมื้อ</p>
+					<div class="meta"><span class="price">฿50</span></div>
+				</div>
+			</article>
+		</section>
+	</main>
+
+	<footer>
+		ติดต่อ/สั่งจอง: 012-345-6789 • เปิดทุกวัน 10:00–21:00
+	</footer>
+	<script>
+		(function(){
+			const input = document.getElementById('ingredientsInput');
+			const searchBtn = document.getElementById('searchBtn');
+			const resetBtn = document.getElementById('resetBtn');
+			const dishes = Array.from(document.querySelectorAll('.dish'));
+
+			function norm(s){return (s||'').trim().toLowerCase();}
+			function search(){
+				const raw = norm(input.value);
+				const terms = raw.split(/[\s,，]+/).map(norm).filter(Boolean);
+				if(terms.length===0){ dishes.forEach(d=>d.style.display=''); return; }
+				dishes.forEach(d=>{
+					const ing = norm(d.dataset.ingredients || '');
+					const ok = terms.every(t => ing.includes(t));
+					d.style.display = ok ? '' : 'none';
+				});
+			}
+
+			searchBtn.addEventListener('click', search);
+			resetBtn.addEventListener('click', ()=>{input.value=''; search(); input.focus();});
+			input.addEventListener('keydown', e=>{ if(e.key==='Enter'){ e.preventDefault(); search(); }});
+		})();
+	</script>
+</body>
+</html>
+
