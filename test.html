@@ -1,137 +1,226 @@
-<h1>แบบร่าง</h1>
 <!doctype html>
 <html lang="th">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>เมนูอาหาร</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Recipe Finder - โครงหน้าเว็บ</title>
 	<style>
-		:root{--accent:#e76f51;--bg:#fff;--muted:#666}
-		body{font-family:system-ui,-apple-system,Segoe UI,Roboto,'Noto Sans Thai',sans-serif;margin:0;background:var(--bg);color:#111}
-		header{background:linear-gradient(90deg,#ffedd5,#fff5f0);padding:28px 16px;text-align:center;border-bottom:1px solid #eee}
-		header h1{margin:0;font-size:clamp(1.5rem,3vw,2.4rem);color:var(--accent)}
-		main{max-width:1100px;margin:28px auto;padding:0 16px}
-		.menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
-		.dish{background:#fff;border:1px solid #f0f0f0;border-radius:10px;overflow:hidden;box-shadow:0 6px 18px rgba(15,15,15,0.03);display:flex;flex-direction:column}
-		.dish img{width:100%;height:160px;object-fit:cover;display:block}
-		.dish .info{padding:12px 14px;flex:1;display:flex;flex-direction:column}
-		.dish h2{margin:0 0 8px 0;font-size:1.05rem}
-		.dish p{margin:0 0 12px 0;color:var(--muted);font-size:0.95rem;flex:1}
-		.dish .meta{display:flex;justify-content:space-between;align-items:center}
-		.price{font-weight:700;color:var(--accent)}
-		footer{max-width:1100px;margin:28px auto;padding:16px;text-align:center;color:var(--muted);font-size:0.95rem}
-		@media (prefers-color-scheme:dark){:root{--bg:#0b0b0b}body{color:#eee}header{background:linear-gradient(90deg,#1a1a1a,#0f1724)}.dish{background:#0b0b0b;border-color:#111}footer{color:#999}}
+		:root{--gap:12px;--accent:#e76f51;--muted:#666}
+		body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Khmer UI,Arial;margin:0;padding:16px;color:#222}
+		.container{display:grid;grid-template-columns:320px 1fr;gap:20px}
+		header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+		.site-title{font-size:20px;font-weight:700}
+		.search{display:flex;gap:8px}
+		input[type="search"], input[type="text"], select{padding:8px;border:1px solid #ddd;border-radius:6px}
+		button{background:var(--accent);color:#fff;border:none;padding:8px 12px;border-radius:6px;cursor:pointer}
+		.panel{background:#fafafa;border:1px solid #eee;padding:12px;border-radius:8px}
+		.ingredients-list{max-height:50vh;overflow:auto;margin-top:8px}
+		.recipe-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+		.card{background:#fff;border:1px solid #eee;border-radius:8px;overflow:hidden;display:flex;flex-direction:column}
+		.card img{width:100%;height:140px;object-fit:cover}
+		.card-body{padding:10px;flex:1;display:flex;flex-direction:column}
+		.labels{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px}
+		.label{background:#eee;padding:4px 6px;border-radius:6px;font-size:12px}
+		.recommended{display:flex;gap:8px}
+		.modal{position:fixed;inset:0;background:rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;padding:20px}
+		.modal .box{background:#fff;padding:16px;border-radius:8px;max-width:720px;width:100%;max-height:80vh;overflow:auto}
+		.filters-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+		.muted{color:var(--muted);font-size:13px}
+		@media(max-width:900px){.container{grid-template-columns:1fr}.ingredients-list{max-height:200px}}
 	</style>
 </head>
 <body>
 	<header>
-		<h1>เมนูอาหาร</h1>
+		<div class="site-title">ค้นหาเมนูตามวัตถุดิบ</div>
+		<div class="search">
+			<input id="searchInput" type="search" placeholder="พิมพ์ชื่อเมนูหรือวัตถุดิบ" />
+			<button id="searchBtn">ค้นหา</button>
+		</div>
 	</header>
-	<main>
-		<section style="max-width:1100px;margin:16px auto 8px;padding:0 16px;" aria-label="ค้นหาวัตถุดิบ">
-			<label for="ingredientsInput" style="display:block;margin-bottom:8px;font-weight:600;color:#333">ใส่วัตถุดิบที่มี (คั่นด้วย , หรือ เว้นวรรค)</label>
-			<div style="display:flex;gap:8px;align-items:center">
-				<input id="ingredientsInput" type="text" placeholder="เช่น กุ้ง, ไก่, มะนาว" style="flex:1;padding:10px 12px;border-radius:8px;border:1px solid #ddd;font-size:1rem">
-				<button id="searchBtn" style="background:var(--accent);color:#fff;border:none;padding:10px 14px;border-radius:8px;cursor:pointer">ค้นหา</button>
-				<button id="resetBtn" style="background:#f3f3f3;color:#333;border:1px solid #e6e6e6;padding:10px 12px;border-radius:8px;cursor:pointer">รีเซ็ต</button>
-			</div>
-		</section>
 
-		<section class="menu-grid" aria-label="รายการเมนูอาหาร">
-			<article class="dish">
-				<img src="https://via.placeholder.com/600x400?text=%E0%B8%9C%E0%B8%B1%E0%B8%94%E0%B9%84%E0%B8%97%E0%B8%A2" alt="ผัดไทย">
-				<div class="info">
-					<h2>ผัดไทยกุ้งสด</h2>
-					<p>เส้นจันท์ผัดกับกุ้งสด ใส่ถั่วลิสงและซอสสูตรเด็ด เสิร์ฟพร้อมมะนาวสด</p>
-					</div>
-				</article>
+	<div class="container">
+		<aside class="panel">
+			<strong>วัตถุดิบ</strong>
+			<div class="ingredients-list" id="ingredientsList"></div>
+
+			<div style="margin-top:10px;display:flex;gap:8px">
+				<input id="newIngredient" type="text" placeholder="เพิ่มวัตถุดิบอื่น ๆ" />
+				<button id="addIngBtn">+ เพิ่ม</button>
+			</div>
+
+			<hr style="margin:12px 0">
+			<strong>ตัวกรองเพิ่มเติม</strong>
+			<div class="filters-row">
+				<select id="filterType"><option value="">ทุกประเภท</option><option>ต้ม</option><option>ผัด</option><option>แกง</option><option>ทอด</option><option>ยำ</option><option>นึ่ง</option></select>
+				<select id="filterDiet"><option value="">ทุกประเภทอาหาร</option><option>เจ</option><option>มังสวิรัติ</option><option>ฮาลาล</option><option>ไม่ใส่เนื้อ</option></select>
+				<select id="filterDiff"><option value="">ทุกระดับ</option><option>ง่าย</option><option>กลาง</option><option>ยาก</option></select>
+				<select id="filterTime"><option value="">ทุกเวลา</option><option>&lt;15</option><option>15–30</option><option>&gt;30</option></select>
+			</div>
+		</aside>
+
+		<main>
+			<section class="panel" style="margin-bottom:12px">
+				<div style="display:flex;justify-content:space-between;align-items:center">
+					<strong>คำแนะนำสำหรับคุณ</strong>
+					<span class="muted">แนะนำจากวัตถุดิบที่เลือกและเมนูยอดนิยม</span>
+				</div>
+				<div id="recommended" class="recommended" style="margin-top:8px"></div>
 			</section>
 
-		<!-- รายการเมนูหลัก (มีข้อมูลวัตถุดิบใน data-ingredients เพื่อใช้กรอง) -->
-		<section class="menu-grid" aria-label="รายการเมนูอาหาร">
-			<article class="dish" data-ingredients="กุ้ง,เส้น,ถั่วลิสง,มะนาว,ไข่,เต้าหู้">
-				<img src="https://via.placeholder.com/600x400?text=%E0%B8%9C%E0%B8%B1%E0%B8%94%E0%B9%84%E0%B8%97%E0%B8%A2" alt="ผัดไทย">
-				<div class="info">
-					<h2>ผัดไทยกุ้งสด</h2>
-					<p>เส้นจันท์ผัดกับกุ้งสด ใส่ถั่วลิสงและซอสสูตรเด็ด เสิร์ฟพร้อมมะนาวสด</p>
-					<div class="meta"><span class="price">฿80</span></div>
+			<section class="panel">
+				<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+					<strong>ผลลัพธ์สูตร</strong>
+					<span id="resultsCount" class="muted"></span>
 				</div>
-			</article>
-					<div class="meta"><span class="price">฿80</span></div>
-				</div>
-			</article>
+				<div id="recipes" class="recipe-grid"></div>
+			</section>
+		</main>
+	</div>
 
-			<article class="dish" data-ingredients="มะละกอ,ถั่วฝักยาว,กุ้งแห้ง,มะนาว,พริก,ถั่วลิสง">
-				<img src="https://via.placeholder.com/600x400?text=%E0%B8%AA%E0%B8%B5%E0%B9%8A%E0%B8%A7%E0%B8%B0%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81" alt="ส้มตำ">
-				<div class="info">
-					<h2>ส้มตำไทย</h2>
-					<p>ตำสดๆ รสชาติจัดจ้าน ใส่ถั่วฝักยาว มะละกอสุกและกุ้งแห้ง</p>
-					<div class="meta"><span class="price">฿60</span></div>
-				</div>
-			</article>
-
-			<article class="dish" data-ingredients="ไก่,ข้าว,น้ำมัน,ซอส,น้ำจิ้ม">
-				<img src="https://via.placeholder.com/600x400?text=%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%87%E0%B8%AB%E0%B8%B1%E0%B8%9A%E0%B9%80%E0%B8%AB%E0%B8%B2" alt="ข้าวหน้าเป็ด">
-				<div class="info">
-					<h2>ข้าวมันไก่กรอบ</h2>
-					<p>อกไก่หมักทอดกรอบ เสิร์ฟกับข้าวหอมมันซอสพิเศษและน้ำจิ้มสูตรบ้าน</p>
-					<div class="meta"><span class="price">฿95</span></div>
-				</div>
-			</article>
-
-			<article class="dish" data-ingredients="กุ้ง,เห็ด,ตะไคร้,ข่า,มะนาว,ใบมะกรูด">
-				<img src="https://via.placeholder.com/600x400?text=%E0%B8%AA%E0%B8%9A%E0%B8%A3%E0%B8%9A%E0%B8%A5%E0%B8%B2%E0%B8%AA%E0%B9%8C" alt="ต้มยำ">
-				<div class="info">
-					<h2>ต้มยำกุ้งน้ำข้น</h2>
-					<p>ซุปเข้มข้น ใส่เห็ดสดและสมุนไพรไทย ให้รสเปรี้ยวเผ็ดกลมกล่อม</p>
-					<div class="meta"><span class="price">฿120</span></div>
-				</div>
-			</article>
-
-			<article class="dish" data-ingredients="เนื้อ,กะเพรา,ข้าว,ไข่,พริก,กระเทียม">
-				<img src="https://via.placeholder.com/600x400?text=%E0%B8%9A%E0%B8%B2%E0%B8%9A%E0%B8%B4%E0%B8%95%E0%B8%B1%E0%B8%A7" alt="ข้าวผัด">
-				<div class="info">
-					<h2>ข้าวผัดกะเพราเนื้อ</h2>
-					<p>เนื้อสับผัดกะเพรารสจัด เสิร์ฟพร้อมไข่ดาวและเครื่องเคียง</p>
-					<div class="meta"><span class="price">฿110</span></div>
-				</div>
-			</article>
-
-			<article class="dish" data-ingredients="ผลไม้,น้ำตาล,น้ำแข็ง,ครีม">
-				<img src="https://via.placeholder.com/600x400?text=%E0%B8%A0%E0%B8%B2%E0%B8%A3%E0%B8%B4%E0%B8%A3%E0%B9%8C%E0%B8%95%E0%B8%B1%E0%B8%99" alt="ขนม">
-				<div class="info">
-					<h2>ขนมหวานผลไม้</h2>
-					<p>ผลไม้ตามฤดูกาล เสิร์ฟเป็นของหวานเบาๆ ปิดท้ายมื้อ</p>
-					<div class="meta"><span class="price">฿50</span></div>
-				</div>
-			</article>
-		</section>
-	</main>
+	<div id="modalRoot" style="display:none"></div>
 
 	<script>
-		(function(){
-			const input = document.getElementById('ingredientsInput');
-			const searchBtn = document.getElementById('searchBtn');
-			const resetBtn = document.getElementById('resetBtn');
-			const dishes = Array.from(document.querySelectorAll('.dish'));
+		// ตัวอย่างข้อมูลสูตร (มีช่อง recipe_url รองรับอนาคต)
+		const RECIPES = [
+			{id:1,name:'ผัดกระเพราไก่',image:'https://source.unsplash.com/400x300/?food,stirfry',labels:['เผ็ด'],ingredients:['ไก่','กระเพรา','พริก'],type:'ผัด',diet:'ไม่ใส่เนื้อ',difficulty:'ง่าย',time:'15–30',popularity:8,recipe_url:''},
+			{id:2,name:'ต้มยำกุ้ง',image:'https://source.unsplash.com/400x300/?soup,shrimp',labels:['เผ็ด'],ingredients:['กุ้ง','ตะไคร้','มะนาว'],type:'ต้ม',diet:'ไม่ใส่เนื้อ',difficulty:'กลาง',time:'15–30',popularity:10,recipe_url:''},
+			{id:3,name:'แกงเขียวหวานเจ',image:'https://source.unsplash.com/400x300/?curry,vegetarian',labels:['เจ'],ingredients:['มะเขือ','มะเขือเทศ','กะทิ'],type:'แกง',diet:'เจ',difficulty:'กลาง',time:'>30',popularity:6,recipe_url:''},
+			{id:4,name:'สลัดผักรวม',image:'https://source.unsplash.com/400x300/?salad',labels:['ง่าย'],ingredients:['ผักสลัด','มะเขือเทศ','น้ำสลัด'],type:'ยำ',diet:'มังสวิรัติ',difficulty:'ง่าย',time:'<15',popularity:7,recipe_url:''},
+			{id:5,name:'ปลาทอดกระเทียม',image:'https://source.unsplash.com/400x300/?fried,fish',labels:['ไม่ใส่เนื้อ'],ingredients:['ปลา','กระเทียม','น้ำปลา'],type:'ทอด',diet:'ไม่ใส่เนื้อ',difficulty:'กลาง',time:'15–30',popularity:5,recipe_url:''}
+		];
 
-			function norm(s){return (s||'').trim().toLowerCase();}
-			function search(){
-				const raw = norm(input.value);
-				const terms = raw.split(/[\s,，]+/).map(norm).filter(Boolean);
-				if(terms.length===0){ dishes.forEach(d=>d.style.display=''); return; }
-				dishes.forEach(d=>{
-					const ing = norm(d.dataset.ingredients || '');
-					const ok = terms.every(t => ing.includes(t));
-					d.style.display = ok ? '' : 'none';
+		// เริ่มต้นวัตถุดิบพื้นฐานจากข้อมูล
+		const initialIngredients = Array.from(new Set(RECIPES.flatMap(r=>r.ingredients))).sort();
+
+		const state = {
+			ingredients: new Set(initialIngredients),
+			selected: new Set(),
+			nameQuery: '',
+			filters: {type:'',diet:'',difficulty:'',time:''}
+		};
+
+		const ingredientsListEl = document.getElementById('ingredientsList');
+		const recipesEl = document.getElementById('recipes');
+		const recommendedEl = document.getElementById('recommended');
+		const resultsCountEl = document.getElementById('resultsCount');
+
+		function renderIngredients(){
+			ingredientsListEl.innerHTML = '';
+			Array.from(state.ingredients).forEach(ing=>{
+				const id = 'ing_'+ing.replace(/\s+/g,'_');
+				const wrapper = document.createElement('div');
+				wrapper.innerHTML = `<label><input type="checkbox" id="${id}" ${state.selected.has(ing)?'checked':''}/> ${ing}</label>`;
+				ingredientsListEl.appendChild(wrapper);
+				wrapper.querySelector('input').addEventListener('change', e=>{
+					if(e.target.checked) state.selected.add(ing); else state.selected.delete(ing);
+					applyFilters();
 				});
-			}
+			});
+		}
 
-			searchBtn.addEventListener('click', search);
-			resetBtn.addEventListener('click', ()=>{input.value=''; search(); input.focus();});
-			input.addEventListener('keydown', e=>{ if(e.key==='Enter'){ e.preventDefault(); search(); }});
-		})();
+		function addIngredient(name, select=true){
+			if(!name) return;
+			const trimmed = name.trim();
+			if(!trimmed) return;
+			state.ingredients.add(trimmed);
+			if(select) state.selected.add(trimmed);
+			renderIngredients();
+			applyFilters();
+		}
+
+		// Search button behavior: if input not in ingredients, add as new ingredient; also set nameQuery
+		document.getElementById('searchBtn').addEventListener('click', ()=>{
+			const v = document.getElementById('searchInput').value.trim();
+			if(!v) return;
+			state.nameQuery = v;
+			if(!Array.from(state.ingredients).some(i=>i.toLowerCase()===v.toLowerCase())){
+				addIngredient(v, true);
+			} else {
+				// if it's existing ingredient, select it
+				const match = Array.from(state.ingredients).find(i=>i.toLowerCase()===v.toLowerCase());
+				if(match) state.selected.add(match);
+				renderIngredients();
+				applyFilters();
+			}
+			document.getElementById('searchInput').value = '';
+		});
+
+		// Add ingredient panel + button and Enter
+		document.getElementById('addIngBtn').addEventListener('click', ()=>{
+			addIngredient(document.getElementById('newIngredient').value);
+			document.getElementById('newIngredient').value='';
+		});
+		document.getElementById('newIngredient').addEventListener('keydown', e=>{ if(e.key==='Enter'){ addIngredient(e.target.value); e.target.value=''; }});
+
+		// Advanced filters change
+		['filterType','filterDiet','filterDiff','filterTime'].forEach(id=>{
+			document.getElementById(id).addEventListener('change', e=>{ state.filters[id.replace('filter','').toLowerCase()] = e.target.value; applyFilters(); });
+		});
+
+		function matchesFilters(r){
+			const f = state.filters;
+			if(f.type && r.type !== f.type) return false;
+			if(f.diet && r.diet !== f.diet) return false;
+			if(f.difficulty && r.difficulty !== f.difficulty) return false;
+			if(f.time && r.time !== f.time) return false;
+			if(state.nameQuery){
+				const q = state.nameQuery.toLowerCase();
+				if(!r.name.toLowerCase().includes(q) && !r.ingredients.some(i=>i.toLowerCase().includes(q))) return false;
+			}
+			// ingredients: recipe must include all selected ingredients
+			for(const sel of state.selected){ if(!r.ingredients.map(x=>x.toLowerCase()).includes(sel.toLowerCase())) return false; }
+			return true;
+		}
+
+		function applyFilters(){
+			const results = RECIPES.filter(matchesFilters);
+			renderRecipes(results);
+			renderRecommended(results);
+		}
+
+		function renderRecipes(list){
+			recipesEl.innerHTML = '';
+			resultsCountEl.textContent = `${list.length} รายการ`;
+			if(list.length===0) recipesEl.innerHTML = '<div class="muted">ไม่พบสูตรที่ตรงกับเงื่อนไข</div>';
+			list.forEach(r=>{
+				const el = document.createElement('div'); el.className='card';
+				el.innerHTML = `
+					<img src="${r.image}" alt="${r.name}">
+					<div class="card-body">
+						<div style="display:flex;justify-content:space-between;align-items:start"><div><strong>${r.name}</strong><div class="muted" style="font-size:12px">${r.type} · ${r.time}</div></div><button data-id="${r.id}">ดูสูตร</button></div>
+						<div class="labels">${r.labels.map(l=>`<span class="label">${l}</span>`).join('')}</div>
+					</div>
+				`;
+				recipesEl.appendChild(el);
+				el.querySelector('button').addEventListener('click', ()=>openRecipe(r));
+			});
+		}
+
+		function renderRecommended(currentResults){
+			// simple recommendation: highest popularity among current results, fallback to global
+			const pool = currentResults.length? currentResults : RECIPES;
+			const sorted = pool.slice().sort((a,b)=>b.popularity - a.popularity).slice(0,6);
+			recommendedEl.innerHTML = '';
+			sorted.slice(0,6).forEach(r=>{
+				const d=document.createElement('div'); d.style.flex='1 1 0'; d.style.minWidth='140px'; d.className='card';
+				d.innerHTML = `<img src="${r.image}" alt="${r.name}"><div class="card-body"><strong>${r.name}</strong><div class="muted">${r.type} · ${r.time}</div></div>`;
+				recommendedEl.appendChild(d);
+			});
+		}
+
+		function openRecipe(r){
+			const root = document.getElementById('modalRoot');
+			root.style.display='block'; root.innerHTML = '';
+			const modal = document.createElement('div'); modal.className='modal';
+			modal.innerHTML = `<div class="box"><button id="closeModal" style="float:right">ปิด</button><h3>${r.name}</h3><img src="${r.image}" style="width:100%;max-height:240px;object-fit:cover;border-radius:6px;margin-bottom:8px"/><p><strong>ข้อมูล:</strong> ประเภท ${r.type} · ${r.time} · ${r.diet} · ระดับ ${r.difficulty}</p><p><strong>วัตถุดิบ:</strong> ${r.ingredients.join(', ')}</p><p><strong>คำอธิบาย:</strong> ${r.recipe_url? 'ดูที่ลิงก์ด้านล่าง (รองรับในอนาคต)': 'สูตรอาหารจะเพิ่มในภายหลัง'}</p></div>`;
+			root.appendChild(modal);
+			modal.querySelector('#closeModal').addEventListener('click', ()=>{ root.style.display='none'; root.innerHTML=''; });
+		}
+
+		// init
+		renderIngredients();
+		applyFilters();
+
 	</script>
 </body>
 </html>
-
