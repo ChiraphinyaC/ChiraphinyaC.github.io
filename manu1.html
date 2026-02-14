@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="th">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ต้มยำกุ้งน้ำใส - วัตถุดิบ</title>
+    <style>
+        :root {
+            --accent: #f97316;
+            --cream: #fff7ed;
+            --brown: #7a4a2a;
+            --border: #ecd8c6;
+            --red: #dc2626;
+            --green: #16a34a;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: system-ui, Arial, Helvetica, sans-serif;
+            margin: 0;
+            color: var(--brown);
+            background: #fffdf9;
+        }
+        
+        header {
+            width: 100%;
+            background: linear-gradient(135deg, var(--cream), #fde68a);
+            border-bottom: 3px solid var(--accent);
+            padding: 20px 16px;
+            text-align: center;
+        }
+        
+        .header-content h1 {
+            margin: 0;
+            font-size: 32px;
+            color: var(--brown);
+        }
+        
+        .header-content p {
+            margin: 5px 0 0 0;
+            color: var(--red);
+            font-size: 14px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .intro {
+            background: var(--cream);
+            border-left: 4px solid var(--accent);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .intro h2 {
+            margin-top: 0;
+            color: var(--red);
+        }
+        
+        .ingredients-section {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .ingredients-section h2 {
+            color: var(--accent);
+            margin-top: 0;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 10px;
+        }
+        
+        .ingredients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .ingredient-card {
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px;
+            background: #fffaf6;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+        
+        .ingredient-icon {
+            font-size: 24px;
+            min-width: 30px;
+            text-align: center;
+        }
+        
+        .ingredient-info h3 {
+            margin: 0 0 5px 0;
+            font-size: 16px;
+            color: var(--brown);
+        }
+        
+        .ingredient-info p {
+            margin: 0;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .quantity {
+            background: var(--accent);
+            color: #fff;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .category-label {
+            display: inline-block;
+            background: var(--cream);
+            color: var(--brown);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+        
+        .notes {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #92400e;
+        }
+        
+        .notes strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #999;
+            font-size: 12px;
+        }
+        
+        @media (max-width: 600px) {
+            .header-content h1 {
+                font-size: 24px;
+            }
+            
+            .ingredients-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>🍤 ต้มยำกุ้งน้ำใส 🌶️</h1>
+            <p>วัตถุดิบและส่วนผสมสำหรับสูตรอาหารไทยยอดนิยม</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="intro">
+            <h2>เกี่ยวกับเมนูนี้</h2>
+            <p>ต้มยำกุ้งน้ำใส เป็นจานอาหารไทยที่มีรสชาติซ่าซ่าเผ็ดเผ็ด น้ำซุปใสใหญ่ วัตถุดิบสดใหม่ และมีประโยชน์ต่อสุขภาพ เหมาะกับการรับประทานในช่วงเย็นหรือเป็นอาหารสำคัญในเทศกาลต่างๆ</p>
+        </div>
+        
+        <div class="ingredients-section">
+            <h2>📋 วัตถุดิบหลัก</h2>
+            <div class="ingredients-grid">
+                <div class="ingredient-card">
+                    <div class="ingredient-icon">🦐</div>
+                    <div class="ingredient-info">
+                        <h3>กุ้ง</h3>
+                        <p><span class="quantity">250 กรัม</span></p>
+                        <p>กุ้งสดตัวใหญ่ล้าว หรือกุ้งขาวบ่ายวัน</p>
+                        <span class="category-label">โปรตีน</span>
+                    </div>
+                </div>
+                
+                <div class="ingredient-card">
+                    <div class="ingredient-icon">💧</div>
+                    <div class="ingredient-info">
+                        <h3>น้ำสต็อก/น้ำซุป</h3>
+                        <p><span class="quantity">1 ลิตร</span></p>
+                        <p>น้ำสต็อกไก่หรือน้ำซุปปลา</p>
+                        <span class="category-label">ของเหลว</span>
+                    </div>
+                </div>
+                
+                <div class="ingredient-card">
+                    <div class="ingredient-icon">🌾</div>
+                    <div class="ingredient-info">
+                        <h3>ตะไคร้</h3>
+                        <p><span class="quantity">3-4 หน่วย</span></p>
+                        <p>ตะไคร้สดคั่นให้ออกน้ำหอม</p>
+                        <span class="category-label">เครื่องด่าง</span>
+                    </div>
+                </div>
+                
+                <div class="ingredient-card">
+                    <div class="ingredient-icon">🥒</div>
+                    <div class="ingredient-info">
+                        <h3>ข่า</h3>
+                        <p><span class="quantity">3-4 ชิ้น</span></p>
+                        <p>ข่าสดหรือข่าแห้งต้มให้นุ่ม</p>
+                        <span class="category-label">เครื่องด่าง</span>
+                    </div>
+                </div>
+                
+                <div class="ingredient-card">
+                    <div class="ingredient-icon">🍃</div>
+                    <div class="ingredient-info">
+                        <h3>ใบมะกรูด</h3>
+                        <p><span class="quantity">6-8 ใบ</span></p>
+                        <p>ใบมะกรูดสดหรือแห้ง ฉีกออกเป็นชิ้น</p>
+                        <span class="category-label">เครื่องด่าง</span>
+                    </div>
+                </div>
+                
+                <div class="ingredient-card">
+                    <div class="ingredient-icon">🌶️</div>
+                    <div class="ingredient-info">
+                        <h3>พริกชี้ฟ้า</h3>
+                        <p><span class="quantity">5-7 เม็ด</span></p>
+                        <p>พริกสดแดง พริกสดเขียว ตามชอบ</p>
+                        <span class="category-label">รสชาติ</span>
+                    </div>
+                </div>
+                
+                <div class="ingredient-card">
+                    <div class="ingredient-icon">✋</div>
+                    <div class="ingredient-info">
+                        <h3>กระเทียม</h3>
+                        <p><span class="quantity">4-5 กลีบ</span></p>
+                        <p>กระเทียมสดคั่นหรือซอยเบา ๆ</p>
+                        <span class="category-label">เครื่องด่าง</span>
+                    </div>
+                </div>
+                
+                <div class="ingredient-card">
+                    <div class="ingredient-icon">🧅</div>
+                    <div class="ingredient-info">
+                        <h3>หอมแดง</h3>
+                        <p><span class="quantity">1 หัว</span></p>
+                        <p>หอมแดงสดหั่นชิ้นหรือลอก</p>
+                        <span class="category-label">ประกอบ</span>
+                    </div>
+                </div>
+                
+                <div class="ingredient-card">
+                    <div class="ingredient-icon">🍄</div>
+                    <div class="ingredient-info">
+                        <h3>เห็ดฟาง</h3>
+                        <p><span class="quantity">150 กรัม</span></p>
+                        <p>เห็ดฟางสดหรือเห็ดเพ้าะ</p>
+                        <span class="category-label">ประกอบ</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="ingredients-section">
+            <h2>🧂 เครื่องปรุง</h2>
+            <div class="ingredients-grid">
+                <div class="ingredient-card">
+                    <div class="ingredient-icon">🍋</div>
+                    <div class="ingredient-info">
+                        <h3>น้ำมะนาว</h3>
+                        <p><span class="quantity">3-4 ช้อนโต๊ะ</span></p>
+                        <p>มะนาวสดหรือน้ำมะนาวใสบรรจุ</p>
+                        <span class="category-label">รสชาติ</span>
+                    </div>
+                </div>
+                
+                <div class="ingredient-card">
+                    <div class="ingredient-icon">🐟</div>
+                    <div class="ingredient-info">
+                        <h3>น้ำปลา</h3>
+                        <p><span class="quantity">3 ช้อนโต๊ะ</span></p>
+                        <p>น้ำปลาสดคุณภาพดี</p>
+                        <span class="category-label">รสชาติ</span>
+                    </div>
+                </div>
+                
+                <div class="ingredient-card">
+                    <div class="ingredient-icon">🌶️</div>
+                    <div class="ingredient-info">
+                        <h3>พริกแห้ง</h3>
+                        <p><span class="quantity">3-5 อัน</span></p>
+                        <p>พริกแห้งอบให้นุ่มหรือคั่นเบา ๆ</p>
+                        <span class="category-label">รสชาติ</span>
+                    </div>
+                </div>
+                
+                <div class="ingredient-card">
+                    <div class="ingredient-icon">🍯</div>
+                    <div class="ingredient-info">
+                        <h3>น้ำตาลหรือหญ้าหวาน</h3>
+                        <p><span class="quantity">1 ช้อนชา</span></p>
+                        <p>เพื่อทำให้สมดุลรสชาติ</p>
+                        <span class="category-label">รสชาติ</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="ingredients-section">
+            <h2>🥘 วัตถุดิบเพิ่มเติม (ตามชอบ)</h2>
+            <div class="ingredients-grid">
+                <div class="ingredient-card">
+                    <div class="ingredient-icon">🎋</div>
+                    <div class="ingredient-info">
+                        <h3>หน่อไม้</h3>
+                        <p><span class="quantity">100 กรัม</span></p>
+                        <p>หน่อไม้ดองสดหรือบดัดกะลา</p>
+                        <span class="category-label">ประกอบ</span>
+                    </div>
+                </div>
+                
+                <div class="ingredient-card">
+                    <div class="ingredient-icon">🍅</div>
+                    <div class="ingredient-info">
+                        <h3>มะเขือมาตรฐาน</h3>
+                        <p><span class="quantity">150 กรัม</span></p>
+                        <p>มะเขือลูกแดง มะเขือเขียว</p>
+                        <span class="category-label">ประกอบ</span>
+                    </div>
+                </div>
+                
+                <div class="ingredient-card">
+                    <div class="ingredient-icon">🌿</div>
+                    <div class="ingredient-info">
+                        <h3>ใบแสบ/โหระพา</h3>
+                        <p><span class="quantity">5-6 ใบ</span></p>
+                        <p>เพื่อเอกลักษณ์รสชาติเพิ่มเติม</p>
+                        <span class="category-label">เครื่องด่าง</span>
+                    </div>
+                </div>
+                
+                <div class="ingredient-card">
+                    <div class="ingredient-icon">🧂</div>
+                    <div class="ingredient-info">
+                        <h3>เกลือ</h3>
+                        <p><span class="quantity">ตามชอบ</span></p>
+                        <p>เพื่อปรุงรสให้เหมาะสม</p>
+                        <span class="category-label">รสชาติ</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="notes">
+            <strong>💡 เคล็ดลับการทำ:</strong>
+            <ul style="margin: 0; padding-left: 20px;">
+                <li>ควรใช้วัตถุดิบสดใหม่เพื่อได้รสชาติที่ดีที่สุด</li>
+                <li>คั่นตะไคร้ ข่า และกระเทียมให้ออกน้ำหอมก่อนหมึก</li>
+                <li>ต้มที่ไฟประมาณ 3-5 นาทีเพื่อให้กุ้งติดสีและไม่เกรื่อน</li>
+                <li>ปรุงรสว่างตรงก่อนเสิร์ฟ ด้วยน้ำมะนาว น้ำปลา และน้ำตาล</li>
+                <li>สามารถเพิ่มเพิ่มเติมพริกสดหรือน้ำจิ้ม (ซ้อน) เพิ่มความเผ็ดตามชอบ</li>
+            </ul>
+        </div>
+    </div>
+    
+    <footer>
+        สูตรต้มยำกุ้งน้ำใส - อาหารไทยดั้งเดิม | สร้างสำหรับการแสดงวัตถุดิบและส่วนผสม
+    </footer>
+</body>
+</html>
